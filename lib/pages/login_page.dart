@@ -1,7 +1,8 @@
+import 'package:counter_test/pages/password_recovery_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -22,23 +23,24 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 class Fondo extends StatelessWidget {
-  const Fondo({super.key});
+  const Fondo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-        colors: [Colors.blue.shade300, Colors.blue],
-        begin: Alignment.centerRight,
-        end: Alignment.centerLeft,
-      )),
+        gradient: LinearGradient(
+          colors: [Colors.blue.shade300, Colors.blue],
+          begin: Alignment.centerRight,
+          end: Alignment.centerLeft,
+        ),
+      ),
     );
   }
 }
 
 class Contenido extends StatefulWidget {
-  const Contenido({super.key});
+  const Contenido({Key? key}) : super(key: key);
 
   @override
   State<Contenido> createState() => _ContenidoState();
@@ -84,7 +86,7 @@ class _ContenidoState extends State<Contenido> {
 }
 
 class Datos extends StatefulWidget {
-  const Datos({super.key});
+  const Datos({Key? key}) : super(key: key);
 
   @override
   State<Datos> createState() => _DatosState();
@@ -165,7 +167,7 @@ class _DatosState extends State<Datos> {
 }
 
 class Remember extends StatefulWidget {
-  const Remember({super.key});
+  const Remember({Key? key}) : super(key: key);
 
   @override
   State<Remember> createState() => _RememberState();
@@ -174,28 +176,36 @@ class Remember extends StatefulWidget {
 class _RememberState extends State<Remember> {
   bool ischecked = true;
 
+  void handlePasswordForgotten() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const PasswordRecoveryPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Checkbox(
-            value: ischecked,
-            onChanged: (value) => {
-                  setState(() => ischecked == false
-                      ? ischecked = true
-                      : ischecked = false),
-                }),
+          value: ischecked,
+          onChanged: (value) {
+            setState(() {
+              ischecked = value ?? false;
+            });
+          },
+        ),
         const Text(
-          'Recuerdame',
+          'Recuérdame',
           style: TextStyle(fontSize: 12),
         ),
         const Spacer(),
         TextButton(
-            onPressed: () => {},
-            child: const Text(
-              '¿Olvido su contraseña?',
-              style: TextStyle(fontSize: 12),
-            )
+          onPressed: handlePasswordForgotten, // Llama a la función definida arriba
+          child: const Text(
+            '¿Olvidó su contraseña?',
+            style: TextStyle(fontSize: 12),
+          ),
         ),
       ],
     );
@@ -203,7 +213,7 @@ class _RememberState extends State<Remember> {
 }
 
 class Botones extends StatelessWidget {
-  const Botones({super.key});
+  const Botones({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -281,7 +291,7 @@ class Botones extends StatelessWidget {
 
 
 class Privacidad extends StatefulWidget {
-  const Privacidad({super.key});
+  const Privacidad({Key? key}) : super(key: key);
 
   @override
   State<Privacidad> createState() => _PrivacidadState();
